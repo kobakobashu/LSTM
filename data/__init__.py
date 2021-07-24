@@ -14,6 +14,7 @@ import data.helper
 from data.dataloader import DataLoader
 from data.dataset.omniglot import Omniglot
 from data.dataset.cifar10 import CIFAR10
+from data.dataset.flag_recognition_data import FlagRecognitionData
 from data.sampler.balanced_batch_sampler import BalancedBatchSampler
 
 
@@ -62,6 +63,17 @@ def get_dataset(cfg: object, mode: str) -> tuple:
 
         if mode == "trainval":
             num_shot = cfg.data.dataset.num_train_samples / cfg.data.dataset.num_class
+            return helper.classification_train_val_split(dataset=filtered_dataset, num_shot=num_shot)
+        elif mode == "test":
+            return filtered_dataset
+
+    elif dataset_name == "flag_recognition_data":
+        dataset = FlagRecognitionData(cfg, mode)
+        classes = list(range(cfg.data.dataset.num_class))
+        filtered_dataset = helper.class_filter(dataset=dataset, classes=classes)
+
+        if mode == "trainval":
+            num_shot = cfg.data.dataset.num_train_samples // cfg.data.dataset.num_class
             return helper.classification_train_val_split(dataset=filtered_dataset, num_shot=num_shot)
         elif mode == "test":
             return filtered_dataset

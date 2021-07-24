@@ -8,6 +8,7 @@ Information about supported datasets, samplers, models, optimizers, criterions a
 SUPPORTED_DATASET = [
     "omniglot",
     "cifar10",
+    "flag_recognition_data",
 ]
 
 SUPPORTED_SAMPLER = [
@@ -18,6 +19,7 @@ SUPPORTED_SAMPLER = [
 SUPPORTED_MODEL = [
     "resnet18",
     "simple_cnn",
+    "LSTM",
 ]
 
 SUPPORTED_OPTIMIZER = [
@@ -26,6 +28,7 @@ SUPPORTED_OPTIMIZER = [
 
 SUPPORTED_CRITERION = [
     "cross_entropy",
+    "nll_loss",
 ]
 
 SUPPORTED_METRIC = [

@@ -54,7 +54,7 @@ def classification_train_val_split(dataset: object, num_shot: int) -> tuple:
     val_indices = []
 
     for idx in range(dataset_len):
-        class_label = dataset[idx][1]
+        class_label = dataset[idx][1].item()
         if class_label not in num_samples_per_class:
             num_samples_per_class[class_label] = 1
             train_indices.append(idx)
